@@ -1,0 +1,90 @@
+- Introdução ao Git e GitHub
+    - Benefícios dessas duas tecnologia
+        Controle de versão, armazenamento em nuvem, trabalho em equipe, melhorar seu código e reconhecimento
+- Navegação via linha de comando e instalação
+    - Comandos básicos para um bom desempenho no terminal
+        - Windows
+            dir → Lista as pastas e arquivos
+            cd → Entra na pasta desejada
+            cd .. → Volta uma pasta
+            cls → Limpar a tela
+            tab → completa automaticamente
+            mkdir → Cria uma pasta
+            echo → Printa no terminal uma frase ou texto
+            - > → redirecionador de fluxo
+                Ex: echo > hello.txt (Cria o arquivo hello.txt)
+            del → Exclui somente arquivos de uma determinada pasta
+            - rmdir /S /Q → Exclui todo o diretório
+                Ex: rmdir pasta /S /Q
+            seta pra cima → Navega nos comandos digitados anteriormente
+        - Linux (Bash)
+            ls → Lista as pastas e arquivos
+            cd → Entra na pasta desejada
+            cd.. → Volta uma pasta
+            clear ou ctrl + L → Limpar a tela
+            seta pra cima → Navega nos comandos digitados anteriormente
+            - rm -rf → Exclui todo o diretório
+                Ex: rm -rf pasta
+- Entendendo como o Git funciona por baixo dos panos
+    - SHA1
+        Algoritmo de encriptação.
+        É uma forma curta de representar um arquivo
+        Essa encriptação gera conjunto de 40 digítos aleatórios.
+        Ex: Criado um txt no desktop e pesquisado o conteúdo do sha1 através do “git bash here”
+        Utiliza-se esse método no GitHub quando um arquivo sofre alteração onde é gerado um novo conjunto de 40 dígitos.
+        Obs: Ele só altera se realmente sofreu alteração. Se foi alterado e depois tirado a alteração permanece com o código anterior.
+    - Objetos fundamentais
+    	- Blobs “Arquivos”
+        	Contém metadados do git
+        	Guarda o SHA do arquivo
+    	- Trees (árvores) “Pastas”
+        	Armazenam Blobs
+        	Guarda o nome do arquivo
+    	- Commits
+		Armazenam as trees, parente(último commit), autor, mensagem
+		O SHA1 desse commit é o hash de toda a esse informação
+    - Sistema distribuído
+    	Se der problema no servidor, há uma versão confiável em algum computador que tenha o repositório.
+    	Sempre possui a versão mais atualizada
+- Chave SSH
+    É uma forma de estabelecer uma conexão segura e encriptada entre duas máquinas.
+    Há sempre uma chave pública e uma chave privada.
+    - Gerando o par de chaves via linha de comando no git bash
+        ssh-keygen -t ed25519 -C [pedrob14farias@gmail.com](mailto:pedrob14farias@gmail.com)
+        
+        ed25519: Tipo de criptografia da chave
+        C:\Users\Pedro\.ssh: Vai conter 2 chaves. Uma privada e outra pública (.pub)
+        
+        cat: Visualizar o conteúdo de uma das chaves
+        Copiar o conteúdo e adicionar ao Github
+        ssh-agent: Uma entidade que vai ficar encarregada de pegar as chaves e lidar com elas
+        
+        eval $(ssh-agent -s)
+        Vai ser passada a chave privada e não a pública para o agent
+        Realizando o teste clonando com a chave ssh
+        Clonando com a chave ssh não precisa inserir senha como é feito normalmente no https
+        - Token
+    	Ao tentar clonar um repositório, solicitar um token
+    	Guardar o token gerado
+    	Ao tentar realizar um clone, vai solicitar o token gerado
+- Primeiros comandos com Git
+    - Iniciar o Git
+        - git init
+            Cria-se um repositório no git dentro de um determinado diretório (Dentro de uma pasta)
+        - git add
+        - git commit
+    - Iniciar o versionamento
+    - Criar um commit
+    - Criar um repositório
+    - Flags
+        -a → Mostra arquivos ocultos
+    - Extensão markdown (.md)
+        É utilizado um código mais simplificado
+- Conceitos de untracked e tracked
+    - Ao criar um arquivo ele fica inicia em untracked (não rastreado)
+    - Ao rodar o comando git add . move aquele arquivo untracked (não rastreado) direto para staged (que aguarda o próximo comando/passo)
+    - Um arquivo no repositório do git que ainda não sofreu modificação está no estágio unmodified (não modificado). Ao ser editado vai direto para modified (modificado)
+    - Ao rodar o comando git add . novamente move aquele arquivo que estava em modified (modificado) direto para staged (que aguarda o próximo comando/passo)
+    - Ao remover um arquivo que não foi modificado e for excluído, ele vai de unmodified (não modificado) para untracked (não rastreado)
+    - Ao dar o commit, o staged (que aguarda o próximo comando/passo) vai direto para unmodified (não modificado)
+    
